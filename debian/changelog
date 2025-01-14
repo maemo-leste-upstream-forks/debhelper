@@ -1,3 +1,9 @@
+debhelper (13.11.4.1) unstable; urgency=medium
+
+  * Re-add dh_gconf
+
+ -- Merlijn Wajer <merlijn@wizzup.org>  Tue, 14 Jan 2025 17:55:28 +0100
+
 debhelper (13.11.4) unstable; urgency=medium
 
   [ Peter Pentchev ]
