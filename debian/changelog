@@ -1,3 +1,9 @@
+debhelper (13.23.1) unstable; urgency=medium
+
+  * Re-add dh_gconf
+
+ -- Merlijn Wajer <merlijn@wizzup.org>  Tue, 28 Jan 2025 15:52:40 +0100
+
 debhelper (13.23) unstable; urgency=medium
 
   * makefile.pm: Preserve return value from `sub install`
