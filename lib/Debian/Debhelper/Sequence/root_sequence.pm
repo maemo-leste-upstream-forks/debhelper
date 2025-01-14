@@ -69,6 +69,7 @@ qw{
 	dh_bugfiles
 	dh_ucf
 	dh_lintian
+	dh_gconf
 	dh_icons
 	dh_perl
 	dh_usrlocal
