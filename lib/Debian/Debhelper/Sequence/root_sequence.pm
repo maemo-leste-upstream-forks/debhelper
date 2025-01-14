@@ -12,7 +12,6 @@ my $include_if_compat_X_or_newer = sub {
 
 my @obsolete_command = (
 	[13, $include_if_compat_X_or_newer->(11, 'dh_systemd_enable', 'dh_systemd_start')],
-	[14, 'dh_gconf'],
 );
 
 my @commands_controlled_by_deb_build_options = (
