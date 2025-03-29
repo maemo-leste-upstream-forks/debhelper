@@ -2,13 +2,13 @@
 # Copyright (C) 2014 The debhelper's copyright holder.
 # This file is distributed under the same license as the debhelper package.
 #
-# Américo Monteiro <a_monteiro@gmx.com>, 2014 - 2024.
+# Américo Monteiro <a_monteiro@gmx.com>, 2014 - 2025.
 msgid ""
 msgstr ""
-"Project-Id-Version: debhelper ??\n"
+"Project-Id-Version: debhelper 13.24.1\n"
 "Report-Msgid-Bugs-To: debhelper@packages.debian.org\n"
 "POT-Creation-Date: 2025-01-03 06:05+0100\n"
-"PO-Revision-Date: 2024-06-19 21:08+0100\n"
+"PO-Revision-Date: 2025-03-12 23:04+0000\n"
 "Last-Translator: Américo Monteiro <a_monteiro@gmx.com>\n"
 "Language-Team: Portuguese <>\n"
 "Language: pt\n"
@@ -2685,12 +2685,17 @@ msgid ""
 "If the package needs the short-cuts for single-binary packages, it must "
 "explicitly activate the B<single-binary> add-in."
 msgstr ""
+"O add-on B<single-binary> para B<dh> já não é mais implicitamente activado "
+"por pacotes fonte que têm uma única estrofe B<Package> em "
+"F<debian/control>. Se o pacote precisar dos atalhos para pacotes "
+"binário-singular, tem de explicitamente activar o add-in B<single-binary>."
 
 #. type: textblock
 #: debhelper-compat-upgrade-checklist.pod:40
 msgid ""
 "This can be done via a B<Build-Depends> on B<dh-sequence-single-binary>."
 msgstr ""
+"Isto pode ser feito via um B<Build-Depends> em B<dh-sequence-single-binary>."
 
 #. type: textblock
 #: debhelper-compat-upgrade-checklist.pod:42
@@ -2699,6 +2704,9 @@ msgid ""
 "compat 14 can now be removed to simplify F<debian/rules> without triggering "
 "the warning."
 msgstr ""
+"Qualquer B<--without single-binary> passado ao B<dh> para evitar o aviso em "
+"compatibilidade 14 pode agora ser removido para simplificar F<debian/rules> "
+"sem que despolete o aviso."
 
 #. type: textblock
 #: debhelper-compat-upgrade-checklist.pod:47
@@ -2735,11 +2743,15 @@ msgid ""
 "example, if you had a F<debian/bar.service> with the following snippet in "
 "F<debian/rules>:"
 msgstr ""
+"Agora é um erro usar um ficheiro de empacotamento sem o prefixo do pacote "
+"para B<--name> mesmo que o pacote fonte apenas produza um pacote binário. "
+"Como exemplo, se você adicionar um F<debian/bar.service> com o seguinte "
+"trecho em F<debian/rules>:"
 
 #. type: verbatim
 #: debhelper-compat-upgrade-checklist.pod:63
 #: debhelper-compat-upgrade-checklist.pod:308
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid ""
 #| " override_dh_installinit:\n"
 #| "\tdh_installinit -pfoo --only-scripts\n"
@@ -2750,9 +2762,8 @@ msgid ""
 "    dh_installsystemd -p foo --name bar\n"
 "\n"
 msgstr ""
-" override_dh_installinit:\n"
-"\tdh_installinit -pfoo --only-scripts\n"
-"\tdh_installinit --remaining\n"
+" override_dh_installsystemd:\n"
+"    dh_installsystemd -p foo --name bar\n"
 "\n"
 
 #. type: textblock
@@ -2761,6 +2772,8 @@ msgstr ""
 msgid ""
 "Then you need to rename F<debian/bar.service> to F<debian/foo.bar.service>."
 msgstr ""
+"Então você precisa renomear F<debian/bar.service> para F<debian/foo.bar."
+"service>."
 
 #. type: =item
 #: debhelper-compat-upgrade-checklist.pod:70
@@ -2807,6 +2820,9 @@ msgid ""
 "B<dh_compress>, and B<dh_fixperm>. Previously, these three commands were run "
 "in the listed order between B<dh_installxfonts> and B<dh_missing>."
 msgstr ""
+"A ordem e posicionamento mudou para B<dh_strip_nondeterminism>, "
+"B<dh_compress>, e B<dh_fixperm>. Anteriormente, estes três comandos eram "
+"corridos na ordem listada entre B<dh_installxfonts> e B<dh_missing>."
 
 #. type: textblock
 #: debhelper-compat-upgrade-checklist.pod:99
@@ -2815,6 +2831,9 @@ msgid ""
 "(arch:any) and before B<dh_installdeb>. Additionally, their new order is "
 "B<dh_fixperms>, B<dh_strip_nondeterminism>, and then B<dh_compress>."
 msgstr ""
+"O seu novo posicionamento é após B<dh_missing> (arch:all) ou B<dh_shlibdeps> "
+"(arch:any) e antes de B<dh_installdeb>. Adicionalmente, a sua nova ordem "
+"é B<dh_fixperms>, B<dh_strip_nondeterminism>, e depois B<dh_compress>."
 
 #. type: textblock
 #: debhelper-compat-upgrade-checklist.pod:104
@@ -2823,6 +2842,9 @@ msgid ""
 "these three commands as anchor or to hook targets for any of these commands "
 "that made assumptions about the command order."
 msgstr ""
+"Esta alteração pode requerer actualizações a add-ons de terceiros que usem "
+"ou estes três comandos como ancoras ou para alvos gancho para qualquer "
+"destes comandos que fazem suposições acerca da ordem dos comandos."
 
 #. type: textblock
 #: debhelper-compat-upgrade-checklist.pod:108
@@ -2833,6 +2855,11 @@ msgid ""
 "may expose bugs in the form of incorrect mode or ownership in the resulting "
 "binary package."
 msgstr ""
+"Adicionalmente, B<dh_strip_nondeterminism> e B<dh_compress> mais quaisquer "
+"comandos adicionados por add-ons de terceiros que usem estes como ancoras "
+"não poderão mais confiar na normalização modo/posse pelo B<dh_fixperms>, "
+"o que pode expor bugs na forma de modo ou posse incorrecta no pacote "
+"binário resultante."
 
 #. type: textblock
 #: debhelper-compat-upgrade-checklist.pod:113
@@ -2840,6 +2867,8 @@ msgid ""
 "Please file any such bugs against the relevant tool. Feel free to include "
 "the B<debhelper> maintainers in CC."
 msgstr ""
+"Por favor relate tais bugs contra a ferramenta relevante. Seja livre de "
+"incluir os maintainers do B<debhelper> em CC."
 
 #. type: textblock
 #: debhelper-compat-upgrade-checklist.pod:118
@@ -2901,10 +2930,14 @@ msgid ""
 "on is activated by default in compat 14 but not in compat 15 (see next "
 "bullet item)."
 msgstr ""
+"O comando B<dh_auto_install> agora usa incondicionalmente "
+"B<--destdir=debian/tmp> por predefinição. O caso-especial para pacotes "
+"fonte que compilam um único pacote binário é agora movido para o addon "
+"B<single-binary> B<dh>. Nota, este add-on é activado por predefinição "
+"na compatibilidade 14 mas não em compatibilidade 15 (veja próximo item)."
 
 #. type: textblock
 #: debhelper-compat-upgrade-checklist.pod:150
-#, fuzzy
 #| msgid ""
 #| "The B<dh> sequencer will warn if the B<single-binary> addon is implicitly "
 #| "activated to warn maintainers of the pending compat 15 change in "
@@ -2918,7 +2951,9 @@ msgid ""
 msgstr ""
 "O sequenciador B<dh> irá avisar se o addon B<single-binary> for activado "
 "implicitamente para avisar os maintainers da pendente alteração na "
-"compatibilidade 15 em B<dh_auto_install>."
+"compatibilidade 15 em B<dh_auto_install>. A activação implícita é uma "
+"funcionalidade de transição para reduzir as chances de riscos com esta "
+"alteração. Em compatibilidade 15, a activação implícita não mais despoleta."
 
 #. type: textblock
 #: debhelper-compat-upgrade-checklist.pod:155
@@ -3102,6 +3137,10 @@ msgid ""
 "now ensure all paths in the B<destdir> have minimal user permissions "
 "(B<chmod -R u+rwX>) to avoid weird I<permission denied> errors during builds."
 msgstr ""
+"Quando se corre B<dh_auto_install>, os sistemas de compilação fornecidos "
+"pelo B<debhelper> irão agora assegurar que todos os caminhos em B<destdir> "
+"têm permissões de utilizador mínimas (B<chmod -R u+rwX>) para evitar erros "
+"esquisitos de I<permissão negada> durante as compilações."
 
 #. type: textblock
 #: debhelper-compat-upgrade-checklist.pod:259
@@ -3109,6 +3148,8 @@ msgid ""
 "Third-party provided debhelper build systems are recommended to support this "
 "as well.  This can be done by running"
 msgstr ""
+"Aos sistemas de compilação debhelper fornecidos por terceiros recomenda-se "
+"que suportem isto também.  Isto pode ser feito ao correr"
 
 #. type: verbatim
 #: debhelper-compat-upgrade-checklist.pod:262
@@ -3117,6 +3158,8 @@ msgid ""
 "     $this->ensure_minimal_permissions($destdir) if not compat(13);\n"
 "\n"
 msgstr ""
+"     $this->ensure_minimal_permissions($destdir) if not compat(13);\n"
+"\n"
 
 #. type: textblock
 #: debhelper-compat-upgrade-checklist.pod:264
@@ -3124,6 +3167,8 @@ msgid ""
 "in the B<debhelper> Buildsystem code from their B<sub install> "
 "implementation after the upstream code has been run."
 msgstr ""
+"no código Buildsystem do B<debhelper> a partir da sua implementação "
+"B<sub install> após o código do autor ter corrido."
 
 #. type: textblock
 #: debhelper-compat-upgrade-checklist.pod:267
@@ -3132,6 +3177,10 @@ msgid ""
 "denied> errors, you can often solve this by running B<chmod -R u+rwX "
 "DIRECTORY> after running the install target from the upstream build system."
 msgstr ""
+"Se você não está a usar B<dh_auto_install> e depara com erros de "
+"I<permissão negada> esquisitos, geralmente você pode resolver isto ao "
+"correr B<chmod -R u+rwX DIRECTÓRIO> após correr o alvo de instalação a "
+"partir do sistema de compilação do autor."
 
 #. type: textblock
 #: debhelper-compat-upgrade-checklist.pod:271
@@ -3141,6 +3190,11 @@ msgid ""
 "\"user write bit\" set. Known cases are B<*.ali> files and B</etc/"
 "sudoers.d>, which B<dh_fixperms> will fix up by default."
 msgstr ""
+"Por favor tenha o cuidado de verificar se o seu pacote tem alguns casos "
+"especiais para permissões onde os ficheiros ou directório por alguma razão "
+"não podem ter o \"bit escrita por utilizador\" definido. Casos conhecidos são "
+"ficheiros B<*.ali> e B</etc/sudoers.d>, o que o B<dh_fixperms> irá corrigir "
+"por predefinição."
 
 #. type: textblock
 #: debhelper-compat-upgrade-checklist.pod:276
@@ -3151,17 +3205,22 @@ msgid ""
 "B<fakeroot> by default (which papered over some of these issues). This "
 "change is aimed at mitigating the problem."
 msgstr ""
+"O problema com permissões não comuns sempre esteve presente em teoria. "
+"No entanto, tem se tornado consideravelmente mais visível com o "
+"B<dh_fixperms> a ser corrido mais tarde na sequência a partir da "
+"compatibilidade 14 e com o mover para remover por predefinição B<fakeroot> "
+"(o que cobria algumas destas situações).  Esta alteração destina-se a "
+"mitigar o problema."
 
 #. type: textblock
 #: debhelper-compat-upgrade-checklist.pod:283
-#, fuzzy
 #| msgid ""
 #| "When using executable debhelper config files, please be aware of the "
 #| "following:"
 msgid "The debhelper configuration files are subject to the following changes:"
 msgstr ""
-"Quando usar ficheiros de configuração executáveis do debhelper, por favor "
-"tenha em atenção o seguinte:"
+"Os ficheiros de configuração do debhelper estão sujeitos às seguintes "
+"alterações:"
 
 #. type: textblock
 #: debhelper-compat-upgrade-checklist.pod:289
@@ -3206,6 +3265,10 @@ msgid ""
 "As example, if you had a F<debian/bar.service> with the following snippet in "
 "F<debian/rules>:"
 msgstr ""
+"Agora despoleta um aviso usar um ficheiro de empacotamento sem o prefixo "
+"do pacote para B<--name> mesmo que o pacote fonte apenas produza um "
+"pacote binário. Como exemplo, se você adicionar um F<debian/bar.service> "
+"com o seguinte trecho em F<debian/rules>:"
 
 #. type: textblock
 #: debhelper-compat-upgrade-checklist.pod:317
@@ -3217,6 +3280,13 @@ msgid ""
 "tool asking it to declare its configuration file with the relevant options "
 "in its B<pkgfile> call."
 msgstr ""
+"As regras de procura predefinidas para ferramentas baseadas no B<Dh_Lib> "
+"agora assumem que os ficheiros de configuração já não têm nome (B<--name>) "
+"nem suportam restrições de arquitectura por redefinição. Se você trabalha "
+"com uma ferramenta tipo-debhelper de terceiros e precisa de suporte para "
+"qualquer uma destas funcionalidades, por favor preencha um relatório de "
+"bug contra a ferramenta pedindo que declare o seu ficheiro de configuração "
+"com as opções relevantes na sua chamada B<pkgfile>."
 
 #. type: textblock
 #: debhelper-compat-upgrade-checklist.pod:323
@@ -3227,6 +3297,12 @@ msgid ""
 "that is no longer supported, please file a feature request for the use-case "
 "and it might be restored."
 msgstr ""
+"Note que o próprio B<debhelper> ajustou as suas regras também para a "
+"maioria das ferramentas com base em análises de utilização via "
+"B<codesearch.debian.org>. Se você está a confiar numa funcionalidade como "
+"as restrições de arquitectura para um dado ficheiro de configuração que já "
+"não é suportado, por favor preencha um pedido para o caso ou uso e poderá "
+"ser restaurada."
 
 #. type: textblock
 #: debhelper-compat-upgrade-checklist.pod:332
@@ -3269,7 +3345,7 @@ msgid ""
 "should be reviewed."
 msgstr ""
 "Os sistemas de compilação B<cmake> agora usam B<cmake --install> em vez de "
-"B<ninja install> e na chamada L<dh_auto_install(1)>. Qualquer sobreposição "
+"B<make install> e na chamada L<dh_auto_install(1)>. Qualquer sobreposição "
 "de B<dh_auto_install> que passe parâmetros extra ao sistema de compilação do "
 "autor deve ser revista."
 
@@ -3343,6 +3419,11 @@ msgid ""
 "these would not be co-installable. Instances affected by this error should "
 "migrate to L<lintian(1)> architecture specific overrides."
 msgstr ""
+"A ferramenta B<dh_lintian> não mais aceita ficheiros de sobreposição "
+"específicos de arquitectura para pacotes com B<Multi-Arch: same> em "
+"F<debian/control>, pois esta não seriam co-instaláveis. As instâncias "
+"afetadas por este erro devem migrar para sobreposições específicas de "
+"arquitectura do L<lintian(1)>."
 
 #. type: =item
 #: debhelper-compat-upgrade-checklist.pod:398
@@ -3433,7 +3514,6 @@ msgstr ""
 
 #. type: textblock
 #: debhelper-compat-upgrade-checklist.pod:449
-#, fuzzy
 #| msgid ""
 #| "The B<dh_auto_*> helpers now reset the environment variables B<HOME> and "
 #| "common B<XDG_*> variable.  Please see description of the environment "
@@ -3443,9 +3523,10 @@ msgid ""
 "common B<XDG_*> variables.  Please see description of the environment "
 "variables in L<debhelper(1)/ENVIRONMENT> for how this is handled."
 msgstr ""
-"Os ajudantes de B<dh_auto_*> agora reiniciam as variáveis de ambiente "
-"B<HOME> e variável comum B<XDG_*>. Por favor veja a descrição das variáveis "
-"de ambiente em L<debhelper(1)/ENVIRONMENT> para como lidar com isto."
+"Os ajudantes de B<dh_auto_*> agora reiniciam a variável de ambiente "
+"B<HOME> e as variáveis comum B<XDG_*>. Por favor veja a descrição das "
+"variáveis de ambiente em L<debhelper(1)/ENVIRONMENT> para como lidar "
+"com isto."
 
 #. type: textblock
 #: debhelper-compat-upgrade-checklist.pod:453
@@ -5411,7 +5492,8 @@ msgid ""
 "      #\n"
 "      # And it gets even more complicated to reason about if dh needs to\n"
 "      # recurse into debian/rules because you have an \"explicit\"\n"
-"      # standard target (e.g. a \"build-arch:\" target separate from \"%:\").\n"
+"      # standard target (e.g. a \"build-arch:\" target separate from \""
+"%:\").\n"
 "      ifneq (...)\n"
 "      override_dh_baz:\n"
 "          maybe run this\n"
@@ -5426,7 +5508,8 @@ msgstr ""
 "      #\n"
 "      # And it gets even more complicated to reason about if dh needs to\n"
 "      # recurse into debian/rules because you have an \"explicit\"\n"
-"      # standard target (e.g. a \"build-arch:\" target separate from \"%:\").\n"
+"      # standard target (e.g. a \"build-arch:\" target separate from \""
+"%:\").\n"
 "      ifneq (...)\n"
 "      override_dh_baz:\n"
 "          maybe run this\n"
@@ -6645,7 +6728,6 @@ msgstr ""
 
 #. type: textblock
 #: dh_auto_install:32
-#, fuzzy
 #| msgid ""
 #| "In compat 15 or later, B<dh_auto_install> will use F<debian/tmp> as the "
 #| "default B<--destdir> and should be moved from there to the appropriate "
@@ -6660,7 +6742,7 @@ msgid ""
 "the B<single-binary> addon for L<dh(1)> is activated, then it will pass an "
 "explicit B<< --destdir=debian/I<package>/ >> to B<dh_auto_install>."
 msgstr ""
-"Em compatibilidade 15 ou posterior, B<dh_auto_install> irá usar F<debian/"
+"Em compatibilidade 14 ou posterior, B<dh_auto_install> irá usar F<debian/"
 "tmp> como B<--destdir> predefinida e deve ser movida de lá para o directório "
 "de compilação de pacote apropriado usando L<dh_install(1)> ou ferramentas "
 "semelhantes. Contudo, se o addon B<single-binary> para L<dh(1)> estiver "
@@ -7030,15 +7112,21 @@ msgstr ""
 #: dh_clean:25
 #, no-wrap
 msgid ""
-"It removes the package build directories, and removes some other files including\n"
-"F<debian/files>, and any detritus left behind by other debhelper commands. It\n"
-"also removes common files and directories that should not appear in a Debian diff:\n"
+"It removes the package build directories, and removes some other files"
+" including\n"
+"F<debian/files>, and any detritus left behind by other debhelper commands."
+" It\n"
+"also removes common files and directories that should not appear in a Debian"
+" diff:\n"
 "  #*# *~ DEADJOE *.orig *.rej *.SUMS __pycache__ TAGS .deps/* *.P *-stamp\n"
 "\n"
 msgstr ""
-"Remove os directórios de compilação do pacote, e remove mais alguns ficheiros incluindo\n"
-"F<debian/files>, e quaisquer detritos deixados por outros comandos debhelper. Também\n"
-"remove ficheiros comuns e directórios que não deveriam aparecer num diff de Debian:\n"
+"Remove os directórios de compilação do pacote, e remove mais alguns ficheiros"
+" incluindo\n"
+"F<debian/files>, e quaisquer detritos deixados por outros comandos debhelper."
+" Também\n"
+"remove ficheiros comuns e directórios que não deveriam aparecer num diff de"
+" Debian:\n"
 "  #*# *~ DEADJOE *.orig *.rej *.SUMS __pycache__ TAGS .deps/* *.P *-stamp\n"
 "\n"
 
@@ -8114,7 +8202,6 @@ msgstr ""
 
 #. type: textblock
 #: dh_installchangelogs:29
-#, fuzzy
 #| msgid ""
 #| "In non-native packages, B<dh_installchangelogs> will first look for "
 #| "changelog files installed by the upstream build system into F<< usr/share/"
@@ -8147,7 +8234,8 @@ msgstr ""
 "B<dh_installchangelogs> (no nível de compatibilidade 7 ou posterior) irá "
 "procurar por ficheiros changelog no directório fonte (ex. a raiz do sub-"
 "directório F<docs>). Irá procurar por F<changelog>, F<changes> e F<history> "
-"opcionalmente com extensões comuns (tais como F<.txt>, F<.md> e F<.rst>)."
+"opcionalmente com extensões comuns (tais como F<.txt>, F<.md>, F<.rst>, "
+"F<.org>, etc.)"
 
 #. type: textblock
 #: dh_installchangelogs:41
@@ -8680,7 +8768,8 @@ msgid ""
 "\t# Script for #PACKAGE#\n"
 "\t#TOKEN#\n"
 "\tEOF\n"
-"    dh_installdeb -pfoo -pbar -pbaz  --define TOKEN=default --define pkg.bar.TOKEN=unique-bar-value \\\n"
+"    dh_installdeb -pfoo -pbar -pbaz  --define TOKEN=default --define"
+" pkg.bar.TOKEN=unique-bar-value \\\n"
 "      --define pkg.baz.TOKEN=unique-baz-value\n"
 "\n"
 msgstr ""
@@ -8696,7 +8785,8 @@ msgstr ""
 "\t# Script for #PACKAGE#\n"
 "\t#TOKEN#\n"
 "\tEOF\n"
-"    dh_installdeb -pfoo -pbar -pbaz  --define TOKEN=default --define pkg.bar.TOKEN=unique-bar-value \\\n"
+"    dh_installdeb -pfoo -pbar -pbaz  --define TOKEN=default --define"
+" pkg.bar.TOKEN=unique-bar-value \\\n"
 "      --define pkg.baz.TOKEN=unique-baz-value\n"
 "\n"
 
@@ -9023,7 +9113,8 @@ msgid ""
 "\t# Script for #PACKAGE#\n"
 "\t#TOKEN#\n"
 "\tEOF\n"
-"    dh_installdebconf -pfoo -pbar -pbaz  --define TOKEN=default --define pkg.bar.TOKEN=unique-bar-value \\\n"
+"    dh_installdebconf -pfoo -pbar -pbaz  --define TOKEN=default --define"
+" pkg.bar.TOKEN=unique-bar-value \\\n"
 "      --define pkg.baz.TOKEN=unique-baz-value\n"
 "\n"
 msgstr ""
@@ -9039,7 +9130,8 @@ msgstr ""
 "\t# Script for #PACKAGE#\n"
 "\t#TOKEN#\n"
 "\tEOF\n"
-"    dh_installdebconf -pfoo -pbar -pbaz  --define TOKEN=default --define pkg.bar.TOKEN=unique-bar-value \\\n"
+"    dh_installdebconf -pfoo -pbar -pbaz  --define TOKEN=default --define"
+" pkg.bar.TOKEN=unique-bar-value \\\n"
 "      --define pkg.baz.TOKEN=unique-baz-value\n"
 "\n"
 
@@ -12998,10 +13090,12 @@ msgstr ""
 #: dh_strip:100
 #, no-wrap
 msgid ""
-"  dh_strip --dbgsym-migration='libfoo-tools-dbg (<< 2.1-3~), libfoo2-dbg (<< 2.1-3~)'\n"
+"  dh_strip --dbgsym-migration='libfoo-tools-dbg (<< 2.1-3~), libfoo2-dbg (<<"
+" 2.1-3~)'\n"
 "\n"
 msgstr ""
-"  dh_strip --dbgsym-migration='libfoo-tools-dbg (<< 2.1-3~), libfoo2-dbg (<< 2.1-3~)'\n"
+"  dh_strip --dbgsym-migration='libfoo-tools-dbg (<< 2.1-3~), libfoo2-dbg (<<"
+" 2.1-3~)'\n"
 "\n"
 
 #. type: =item
