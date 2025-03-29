@@ -1,3 +1,13 @@
+debhelper (13.24.2) unstable; urgency=medium
+
+  [ Christoph Brinkhaus ]
+  * Update German translation of manpages (Closes: #1094029)
+
+  [ Américo Monteiro ]
+  * Update on Portuguese translation of man pages (Closes: #1100357)
+
+ -- Niels Thykier <niels@thykier.net>  Sat, 29 Mar 2025 06:16:14 +0000
+
 debhelper (13.24.1) unstable; urgency=medium
 
   [ Simon McVittie ]
